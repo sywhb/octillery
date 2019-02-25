@@ -203,9 +203,9 @@ func (p *Parser) replaceInsertValueFromValArg(query *InsertQuery, colIndex int, 
 				Val:  []byte(arg),
 			}
 		}
-	case int, int8, int16, int32, int64:
+	case int:
 		if colName == p.shardKeyColumnName(query.TableName) {
-			query.ShardKeyID = Identifier(arg.(int64))
+			query.ShardKeyID = Identifier(int64(arg))
 		}
 		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
 			return &vtparser.SQLVal{
@@ -213,9 +213,89 @@ func (p *Parser) replaceInsertValueFromValArg(query *InsertQuery, colIndex int, 
 				Val:  []byte(fmt.Sprintf("%d", arg)),
 			}
 		}
-	case uint, uint8, uint16, uint32, uint64:
+	case int8:
 		if colName == p.shardKeyColumnName(query.TableName) {
-			query.ShardKeyID = Identifier(int64(arg.(uint64)))
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case int16:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case int32:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case int64:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(arg)
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case uint:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case uint8:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case uint16:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case uint32:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
+		}
+		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
+			return &vtparser.SQLVal{
+				Type: vtparser.IntVal,
+				Val:  []byte(fmt.Sprintf("%d", arg)),
+			}
+		}
+	case uint64:
+		if colName == p.shardKeyColumnName(query.TableName) {
+			query.ShardKeyID = Identifier(int64(arg))
 		}
 		query.ColumnValues[colIndex] = func() *vtparser.SQLVal {
 			return &vtparser.SQLVal{
